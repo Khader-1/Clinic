@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package clinic;
 
 import javafx.application.Application;
@@ -11,27 +6,36 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- *
- * @author PC
- */
 public class Clinic extends Application {
-    
+
+    static private Resizable controller;
+
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Test.fxml"));
+        Parent root = loader.load();
         Scene scene = new Scene(root);
-        
         stage.setScene(scene);
         stage.show();
+        stage.setMinWidth(400);
+        stage.setMinWidth(400);
+        stage.setResizable(true);
+        stage.setOpacity(0.95);
+        controller = (Resizable) loader.getController();
+        stage.widthProperty().addListener((observable, oldValue, newValue) -> {
+            if (controller != null) {
+                controller.resize(oldValue, newValue);
+
+            }
+        });
+    }
+    
+    public static void setController(Resizable newController){
+        Clinic.controller = newController;
     }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
