@@ -1,5 +1,7 @@
 package clinic;
 
+import clinic.ViewsHandlers.CustomTransition;
+import clinic.ViewsHandlers.Resizable;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerNextArrowBasicTransition;
@@ -10,9 +12,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class FXMLDocumentController implements Resizable {
+
     static void onChange(Number oldValue, Number newValue) {
 
     }
@@ -35,17 +39,17 @@ public class FXMLDocumentController implements Resizable {
         }
         HamburgerNextArrowBasicTransition back = new HamburgerNextArrowBasicTransition(burger);
         back.setRate(back.getRate() * -1);
-        burger.setOnMouseClicked((event) -> {
+        burger.setOnMouseClicked((MouseEvent event) -> {
             back.setRate(back.getRate() * -1);
             back.play();
             if (back.getRate() > 0) {
                 CustomTransition.play((double frac) -> {
                     pane.setPrefWidth(50 + frac * 150);
-                    drawer.open();
                 });
+                drawer.open();
             } else {
                 CustomTransition.play((double frac) -> {
-                    pane.setPrefWidth(50 + frac * 150);
+                    pane.setPrefWidth(200 - frac * 150);
                 });
                 drawer.close();
             }
