@@ -1,7 +1,7 @@
 package clinic;
 
-import clinic.ViewsHandlers.CustomTransition;
-import clinic.ViewsHandlers.Resizable;
+import clinic.viewsHandler.CustomTransition;
+import clinic.viewsHandler.Resizable;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerNextArrowBasicTransition;
